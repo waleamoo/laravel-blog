@@ -1,0 +1,28 @@
+@extends('layouts.app')
+@section('content')
+    
+    <div class="content my-4">
+        <h1>Edit Post</h1>
+        <a href="/posts" class="btn btn-success">Go Back</a>
+        <div class="row">
+            <form action="{{ action('PostsController@update', $post->id) }}" method="post">
+                
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" class="form-control" value="{{$post->title}}" placeholder="Title">
+                </div>
+                
+                <div class="form-group">
+                    <label for="article-ckeditor">Body</label>
+                    <textarea class="form-control" name="body" id="article-ckeditor" rows="3" placeholder="Body">{{$post->body}}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                
+                <input type="hidden" name="_method" value="PUT">
+                
+                {{ csrf_field() }}
+                
+            </form>
+        </div>
+    </div>
+@endsection
